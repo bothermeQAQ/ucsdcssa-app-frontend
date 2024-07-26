@@ -1,0 +1,20 @@
+.image-frame{
+    position:relative;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-image: url('../assets/img.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.button-frame{
+    position: relative;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+footer{
+    border: 1px solid #000;
+    position: sticky;
+    
+}
