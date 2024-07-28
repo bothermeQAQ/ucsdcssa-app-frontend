@@ -1,20 +1,46 @@
-.image-frame{
-    position:relative;
-    border: 1px solid #000;
-    border-radius: 10px;
-    background-image: url('../assets/img.png');
+body, html {
+    margin: 1%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5%;
+}
+
+.image-frame {
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    overflow: auto;
+}
+
+.rectangular {
+    width: 90%;
+    height: 300px;
+    border: 2px solid #000;
+    border-radius: 15px;
+}
+
+.circular {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #000;
+    border-radius: 50%;
 }
 
 .button-frame{
-    position: relative;
     border: 1px solid #000;
+    height: 300px;
+    width: 90%;
     border-radius: 10px;
 }
 
-footer{
-    border: 1px solid #000;
-    position: sticky;
-    
+body{
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
 }

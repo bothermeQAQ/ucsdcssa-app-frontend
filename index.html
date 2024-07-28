@@ -1,28 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <title>CSSA APP</title>
-
 </head>
-
 <body>
-    <div class="image-frame">
-        <img alt="homepage picture" href="assets/img.png">
+
+    <div class="container">
+        <div class="image-frame rectangular" id="homepage-image"></div>
     </div>
-    <div class="button-frame">
-        abc
+
+    <div class="container">
+        <div class="button-frame">
+
+        </div>
     </div>
-    <textarea></textarea>
-    <button>确认</button>
-    <button>传参</button>
+
+    <div>
+        <lable></lable>
+        <button onclick="getNumber()">确认1</button>
+        <button>传参</button>
+    </div>
+
+    <div style="border: 1px solid black; width: 90%;">
+        <button id='homeButton' onclick="makeBold()">主页</button>
+        <button onclick="toProfile()">个人</button>
+        <script src="js/script.js"></script>
+    </div>
+
 </body>
 
-<footer>
-    <button>主页</button>
-    <button>个人</button>
-</footer>
 
 </html>
