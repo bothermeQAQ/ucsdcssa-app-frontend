@@ -33,7 +33,7 @@ body, html {
 
 .circle-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(22%, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
     gap: 10px;
     width: 100%;
     height: auto;
@@ -46,10 +46,11 @@ body, html {
     align-items: center;
     justify-content: center;
     aspect-ratio: 1;
-    width: 22vw;
+    width: 20vw;
     max-width: 120px;
     border-radius: 50%;
     transition: border 0.3s;
+    margin: 0.5vw;
 }
 
 .circle.active {
@@ -119,12 +120,12 @@ button {
     }
 
     .circle-container {
-        grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
     }
 
     .circle {
-        width: 40vw;
-        max-width: 80vw;
+        width: 20vw;
+        max-width: 40vw;
     }
 
     button {
