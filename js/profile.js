@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     } else {
         document.getElementById('param-display').textContent = `参数`;
     }
-    setImage('profile-image', '../assets/profile.jpg');
+    setImage('profile-image', 'assets/profile.jpg');
 });
 
 function toHomepage() {

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     initializeCircles();
-    setImage('homepage-image', '../assets/homepage.jpg');
+    setImage('homepage-image', 'assets/homepage.jpg');
 });
 
 function toHomepage() {
