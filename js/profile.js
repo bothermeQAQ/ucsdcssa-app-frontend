@@ -1,7 +1,11 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    const getParam
-    const param = 
-    document.getElementById('param-display').textContent = `${param}`;
+    const urlParams = new URLSearchParams(window.location.search); 
+    const param = urlParams.get('param');
+    if (param){
+        document.getElementById('param-display').textContent = `${param}`;
+    } else {
+        document.getElementById('param-display').textContent = `参数`;
+    }
     setImage('profile-image', '../assets/profile.jpg');
 });
 
