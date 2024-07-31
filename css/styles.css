@@ -107,29 +107,3 @@ button {
     border: 1px solid #000;
     border-radius: 25px;
 }
-
-/* Adjust size with corresponding media */
-@media (max-width: 600px) {
-    .rectangular {
-        height: 200px;
-    }
-
-    .circular {
-        width: 150px;
-        height: 150px;
-    }
-
-    .circle-container {
-        grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
-    }
-
-    .circle {
-        width: 40vw;
-        max-width: 80px;
-    }
-
-    button {
-        font-size: 14px;
-        padding: 8px 16px;
-    }
-}
