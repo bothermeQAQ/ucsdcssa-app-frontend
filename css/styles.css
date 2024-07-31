@@ -1,6 +1,6 @@
 body, html {
     height: 100%;
-    width: 90%;
+    width: 100%;
     margin: 0;
     padding: 0;
     display: flex;
@@ -32,9 +32,8 @@ body, html {
 }
 
 .circle-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 10px;
     width: 100%;
     height: auto;
@@ -49,8 +48,6 @@ body, html {
     height: 120px;
     width: 120px;
     border-radius: 50%;
-    align-items: center;
-    justify-content: center;
     transition: border 0.3s;
 }
 
@@ -109,7 +106,7 @@ button {
     border-radius: 25px;
 }
 
-/*  Adjust size with corresponding media */
+/* Adjust size with corresponding media */
 @media (max-width: 600px) {
     .rectangular {
         height: 200px;
@@ -118,6 +115,15 @@ button {
     .circular {
         width: 150px;
         height: 150px;
+    }
+
+    .circle-container {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+
+    .circle {
+        height: 80px;
+        width: 80px;
     }
 
     button {
