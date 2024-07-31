@@ -46,8 +46,8 @@ body, html {
     align-items: center;
     justify-content: center;
     aspect-ratio: 1;
-    width: 20vw;
-    max-width: 120px;
+    width: 10vw;
+    max-width: 20vw;
     border-radius: 50%;
     transition: border 0.3s;
     margin: 0.5vw;
@@ -124,8 +124,8 @@ button {
     }
 
     .circle {
-        width: 5vw;
-        max-width: 10vw;
+        width: 10vw;
+        max-width: 20vw;
     }
 
     button {
