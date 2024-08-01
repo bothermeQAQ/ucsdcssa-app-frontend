@@ -1,2 +1,2 @@
 # ucsdcssa-app-frontend
-<a href="igiotto12.github.io/ucsdcssa-app-frontend">here<a>
+<a href="http://igiotto12.github.io/ucsdcssa-app-frontend/index/html">here<a>
