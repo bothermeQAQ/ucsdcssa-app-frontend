@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="../css/apiutil.css" />
+    <style>
+        body, html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+            position: relative;
+            height: 90vh;
+            width: 80vw;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .close-btn img {
+            aspect-ratio: 1;
+            height: 3vh;
+        }
+
+        .login-container h2 {
+            margin-top: 2vh;
+            margin-bottom: 2vh;
+        }
+
+        .login-container input {
+            width: 90%;
+            padding: 3vw;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-container button {
+            margin-top: 5vh;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container" id="login-container">
+    </div>
+</body>
+<script type="text/javascript" src="../script/apiutil.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        var str = '';
+        str += '<div class="close-btn" onclick="api.closeWin();"><img src="../image/closebtn.png" alt="Close"></div>';
+        str += '<h2>Login</h2>';
+        str += '<input type="text" id="username" placeholder="Username">';
+        str += '<input type="password" id="password" placeholder="Password">';
+        str += '<button onclick="login()">Login</button>';
+
+        $api.byId('login-container').innerHTML = str;
+    };
+
+    function login() {
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+
+            if (!username) {
+                alert('Please enter your username.');
+                return;
+            }
+
+            if (!password) {
+                alert('Please enter your password.');
+                return;
+            }
+
+            api.ajax({
+                url: 'https://gltest-4g05lx82c60c436e-1307290013.ap-shanghai.app.tcloudbase.com',
+                method: 'post',
+                data: {
+                    values: {
+                        username: username,
+                        password: password
+                    }
+                }
+            }, function (ret, err) {
+                if (ret && ret.code === 0) {
+                    alert(ret.message + ' ' + ret.userid);
+                } else if (ret){
+                    alert(ret.message);
+                }
+                else if (err){
+                    alert('Error: '+ err.code + err.message);
+                }    
+            }); 
+    }
+</script>
+</html>

@@ -1,16 +1,26 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     initializeCircles();
-    setImage('homepage-image', 'assets/homepage.jpg');
+    setImage('homepage-image', '../image/homepage.jpg');
 });
 
 function toHomepage() {
-    window.location.href = "index.html";
+    api.openFrame({
+        name: 'main',
+        url: 'main.html',
+        bounces: true,
+        rect: { // 推荐使用Margin布局，用于适配屏幕的动态变化
+            marginTop: headerH, // main页面距离win顶部的高度
+            marginBottom: footerH, // main页面距离win底部的高度
+            w: 'auto' // main页面的宽度 自适应屏幕宽度
+        }
+    });
 }
 
-function toProfile() {
-    const activeCircle = document.querySelector('.circle.active');
-    const param = activeCircle ? activeCircle.dataset.index : 0;
-    window.location.href = `profile.html?param=${param}`;
+function toLogin() {
+    api.openWin({
+        name: 'Login',
+        url: 'Login.html',
+    });
 }
 
 function highlightText() {
