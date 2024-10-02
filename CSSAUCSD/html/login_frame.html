@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>Login/Register</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+        html,
+        body {
+            background-color: white;
+            height: 100%;
+            width: 100%;
+        }
+
+        .row {
+            margin-top: 20px;
+            width: 80vw;
+            height: 50px;
+            margin-left: 10vw;
+        }
+
+        #loginUsername, #loginPassword, #registerUsername, #registerPassword, #confirmPassword {
+            display: inline-block;
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-bottom: 1px solid #888;
+            padding: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .btn {
+            width: 80vw;
+            height: 50px;
+            margin-left: 10vw;
+            margin-top: 32px;
+            background-color: #20dbcc;
+            color: #fff;
+            font-size: 16px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        #switch {
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+            color: blue;
+            cursor: pointer;
+        }
+
+        #loginForm, #registerForm {
+            display: none;
+        }
+
+        #agree {
+            width: 100%;
+            position: absolute;
+            bottom: 40px;
+            text-align: center;
+        }
+
+        .agree_content {
+            text-align: center;
+            color: rgb(0, 0, 0);
+            font-size: 12.5px;
+        }
+
+        .agree_link {
+            text-align: center;
+            color: rgb(30, 120, 238);
+            font-size: 12.5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Login Form -->
+    <div id="loginForm">
+        <h2 style="text-align: center;">登录</h2>
+        <div class="row">
+            <input type="text" id="loginUsername" placeholder="用户名" required>
+        </div>
+        <div class="row">
+            <input type="password" id="loginPassword" placeholder="密码" required>
+        </div>
+        <div class="btn" tapmode="highlight" onclick="login()">登录</div>
+        <div id="switch" onclick="toggleForm()">还没有账号？去注册</div>
+    </div>
+
+    <!-- Register Form -->
+    <div id="registerForm">
+        <h2 style="text-align: center;">注册</h2>
+        <div class="row">
+            <input type="text" id="registerUsername" placeholder="用户名" required>
+        </div>
+        <div class="row">
+            <input type="password" id="registerPassword" placeholder="密码" required>
+        </div>
+        <div class="row">
+            <input type="password" id="confirmPassword" placeholder="确认密码" required>
+        </div>
+        <div class="btn" tapmode="highlight" onclick="register()">注册</div>
+        <div id="switch" onclick="toggleForm()">已有账号？去登录</div>
+    </div>
+
+    <div id="agree">
+        <span class='agree_content'>登录或注册代表同意</span>
+        <span class='agree_link' onclick="agreement()">&nbsp;用户协议</span>
+        <span class='agree_content'>&nbsp;和</span>
+        <span class='agree_link' onclick="privacy()">&nbsp;隐私政策</span>
+    </div>
+
+    <script src="../script/api.js"></script>
+    <script type="text/javascript">
+        // On page load, show the login form by default
+        document.getElementById('loginForm').style.display = 'block';
+
+        // Function to toggle between login and register forms
+        function toggleForm() {
+            var loginForm = document.getElementById('loginForm');
+            var registerForm = document.getElementById('registerForm');
+
+            if (loginForm.style.display === 'block') {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+            } else {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+            }
+        }
+
+        function login() {
+            var username = document.getElementById('loginUsername').value;
+            var password = document.getElementById('loginPassword').value;
+
+            if (!username){
+                alert('请输入用户名');
+            } else if (!password){
+                alert('请输入密码');
+            }
+
+            api.ajax({
+                url: 'gltest-4g05lx82c60c436e-1307290013.ap-shanghai.app.tcloudbase.com/user_login',
+                method: 'POST',
+                headers: {
+                    'x-apicloud-mcm-key': api.loadSecureValue({sync:true,key:'mcmkey'}), // Assuming token-based auth
+                },
+                data: {
+                    username: username,
+                    password: password
+                },
+                success: function(res) {
+                    if (res.code === 1) {
+                        alert("用户名或密码错误");
+                    } else {
+                        alert("登录成功");
+                        // Store user info in Prefs or session
+                        api.setPrefs({
+                            key: 'user_info',
+                            value: JSON.stringify(res)
+                        });
+                        api.closeWin();
+                        api.openWin({
+                            name: profile,
+                            url: 'profile_frame.html',
+                            bounces: true,
+                        });
+                    }
+                },
+                error: function(err) {
+                    alert('登录失败，请检查网络');
+                }
+            });
+        }
+
+        function register() {
+            var username = document.getElementById('registerUsername').value;
+            var password = document.getElementById('registerPassword').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (!username){
+                alert('请输入用户名');
+                return;
+            } else if (username.length < 5 || username.length > 30){
+                alert('用户名长度需在5到30个字符之间');
+                return;
+            }
+
+            if (!password){
+                alert('请输入密码');
+                return;
+            } else if (password.length < 5 || password.length > 30) {
+                alert('密码长度需在5到30个字符之间');
+                return;
+            }
+            
+            if (!confirmPassword){
+                alert('请再次输入您的密码');
+                return;
+            } else if (password !== confirmPassword) {
+                alert('两次输入的密码不一致');
+                return;
+            }
+
+            api.ajax({
+                url: 'https://gltest-4g05lx82c60c436e-1307290013.ap-shanghai.app.tcloudbase.com/user_register1',
+                method: 'POST',
+                headers: {
+                    'x-apicloud-mcm-key': api.loadSecureValue({sync:true,key:'mcmkey'}), // Assuming token-based auth
+                },
+                data: {
+                    username: username,
+                    password: password
+                },
+                success: function(res) {
+                    if (res.code === 1) {
+                        alert("用户名已存在");
+                    } else if (res.code === 0) {
+                        alert("注册成功");
+                    }
+                },
+                error: function(err) {
+                    alert('注册失败，请检查网络');
+                }
+            });
+        }
+
+        // Additional
+        function privacy() {
+            alert('隐私政策');
+        }
+        // Additional
+        function agreement() {
+            alert('用户协议');
+        }
+    </script>
+
+</body>
+
+</html>

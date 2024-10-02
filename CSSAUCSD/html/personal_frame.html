@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>Profile_frame</title>
+    <link rel="stylesheet" type="text/css" href="../css/apiutil.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            margin: 0;
+        }
+        .container {
+            width: 300px;
+            text-align: center;
+        }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: lightblue;
+            margin: 0 auto;
+        }
+        .info {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: lightgray;
+        }
+        .card {
+            background-color: lightyellow;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .button-grid {
+            margin-left: 35px;
+            display: grid;
+            grid-template-columns: repeat(4, 50px);
+            gap: 10px;
+        }
+        .button-grid button {
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 40px;
+            width: 37px;
+        }
+        .button-grid button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="avatar"></div>
+        <div class="info">
+            <h3>Name</h3>
+            <p>Additional Info</p>
+        </div>
+        <div class="card">
+            <h4>Card Section (Optional)</h4>
+            <p>This can be shown or hidden.</p>
+        </div>
+        <div class="button-grid">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>7</button>
+            <button>8</button>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/apiutil.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        var str = '';
+        str += '<div class="close-btn" onclick="api.closeWin();"><img src="../image/closebtn.png" alt="Close"></div>';
+        str += '<h2>Login</h2>';
+        str += '<input type="text" id="username" placeholder="Username">';
+        str += '<input type="password" id="password" placeholder="Password">';
+        str += '<button onclick="login()">Login</button>';
+    };
+</script>
+</html>

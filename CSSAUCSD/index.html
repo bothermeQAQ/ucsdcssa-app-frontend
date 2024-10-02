@@ -46,17 +46,15 @@
 </head>
 
 <body class="wrap">
-    <header>APP</header>
     <section class="flex-1">
 
     </section>
-    <footer>Copyright &copy; 2014-<span id="year"></span></footer>
 </body>
 <script type="text/javascript" src="./script/apiutil.js"></script>
 <script type="text/javascript">
     apiready = function() {
         //输出Log，Log将显示在 Studio 控制台
-        console.log("Hello World! Hello APP!");
+        console.log("UCSD-CSSA app lauched");
 
         var header = $api.dom('header'); // 获取 header 标签元素
         var footer = $api.dom('footer'); // 获取 footer 标签元素
@@ -79,9 +77,6 @@
             }
         });
 
-        // 获取当前年份时间，并加载显示到页面
-        var year = $api.byId('year');
-        year.innerHTML = new Date().getFullYear();
     };
 
 </script>
